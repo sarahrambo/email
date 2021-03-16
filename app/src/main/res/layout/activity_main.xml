@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Page2">
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -27,20 +27,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Enter subject for email"
+            android:hint="Enter MRNO"
             android:textColor="@color/black"
             tools:layout_editor_absoluteX="111dp"
             tools:layout_editor_absoluteY="319dp" />
 
-        <EditText
-            android:id="@+id/recipient"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/scanButton"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter recipient email"
-            android:textColor="@color/black"
-            tools:layout_editor_absoluteX="114dp"
-            tools:layout_editor_absoluteY="274dp" />
+            android:hint="Scan Sheet"
+            android:textColor="@color/white"
+            app:strokeColor="#FFFFFF" />
+
 
         <Button
             android:id="@+id/submit"

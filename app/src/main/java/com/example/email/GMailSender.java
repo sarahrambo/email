@@ -1,5 +1,6 @@
 package com.example.email;
 
+import android.provider.ContactsContract;
 import android.util.Log;
 
 import java.io.ByteArrayInputStream;
@@ -11,12 +12,17 @@ import java.util.Properties;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
 import javax.mail.Message;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 public class GMailSender extends javax.mail.Authenticator {
     private String mailhost = "smtp.gmail.com";
@@ -55,13 +61,13 @@ public class GMailSender extends javax.mail.Authenticator {
         MimeMessage message = new MimeMessage(session);
         DataHandler handler = new DataHandler(new ByteArrayDataSource(body.getBytes(), "text/plain"));
         message.setSender(new InternetAddress(sender));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipients));
         message.setSubject(subject);
         message.setDataHandler(handler);
 
-        if (recipients.indexOf(',') > 0)
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipients));
-        else
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipients));
+        BodyPart msgBody = new MimeBodyPart();
+        msgBody.setText(body);
+
 
         Transport.send(message);
     }
@@ -106,3 +112,4 @@ public class GMailSender extends javax.mail.Authenticator {
         }
     }
 }
+

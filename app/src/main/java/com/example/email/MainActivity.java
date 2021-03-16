@@ -9,15 +9,15 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
-
+//
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText subject, body, recipient;
+    EditText subject, body;
     Button submit;
     String user= "capstonemailtest@gmail.com";
     String password = "Donbrown2021";
-    String sb, bd, rp;
+    String sb, bd, rp, recipient;
 
 
     GMailSender sender;
@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
         subject = findViewById(R.id.subject);
         body = findViewById(R.id.body);
-        recipient = findViewById(R.id.recipient);
         submit = findViewById(R.id.submit);
 
         sender = new GMailSender(user, password);
@@ -38,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 sb = subject.getText().toString();
                 bd = body.getText().toString();
-                rp = recipient.getText().toString();
+                recipient = "capstonemailtest@gmail.com";
+                rp = recipient;
 
                 new MyAsyncClass().execute();
             }
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(result);
             pDialog.cancel();
 
-            Toast.makeText(MainActivity.this, "mail send", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Sheet Submitted", Toast.LENGTH_SHORT).show();
 
         }
     }

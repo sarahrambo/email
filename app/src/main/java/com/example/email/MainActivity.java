@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     EditText subject, body;
     Button submit;
     String user= "capstonemailtest@gmail.com";
-    String password = "Donbrown2021";
+    String password = "DbsrXMctjr21";
     String sb, bd, rp, recipient;
 
 
